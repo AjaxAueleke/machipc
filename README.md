@@ -66,7 +66,7 @@ To close the central server:
 
 ## Authors
 - email : ahmed.jamil7410@gmail.com
-- github : ajaxaueleke
+- github : @ajaxaueleke(https://www.github.com/ajaxaueleke)
 - github : [@saad0510](https://www.github.com/saad0510)
 - email : ayyansaad46@gmail.com or k200161@nu.edu.pk
 
