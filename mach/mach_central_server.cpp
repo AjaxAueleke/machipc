@@ -4,8 +4,8 @@
 #include <vector>
 #include <algorithm>
 
-#include "include/wrapper.hpp"
-#include "include/msg.hpp"
+#include "../include/wrapper.hpp"
+#include "../include/msg.hpp"
 
 #include "mach_port.hpp"
 #include "mach_service.hpp"
@@ -62,6 +62,7 @@ int main()
             if (FD_ISSET(client->sock, &readyset))
             {
                 struct mach_service req;
+                printf("Client's socket [MACH SERVER] : %d\n", client->sock);
                 int err = readn(
                     client->sock,
                     &req,

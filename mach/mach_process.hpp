@@ -11,8 +11,8 @@
 #include <vector>
 #include <algorithm>
 
-#include "include/wrapper.hpp"
-#include "include/msg.hpp"
+#include "../include/wrapper.hpp"
+#include "../include/msg.hpp"
 
 #include "mach_msg.hpp"
 #include "mach_port.hpp"
