@@ -55,9 +55,10 @@ sock_t Accept(sock_t sock, sockaddr_in *clientaddr, socklen_t addr_size);
  * @brief instructs the kernel to wait on multiple descriptors
  * @param maxfdp1 maximum number of descriptors to be tested
  * @param readset pointer to descriptor set to test for reading
+ * @param timeout_sec number of seconds to wait before returning
  * @return number of ready descriptors. 0 on timeout
  * @throw exit with status 1 on error
  */
-int select_readable(int maxfdp1, fd_set *readset);
+int select_readable(int maxfdp1, fd_set *readset, time_t timeout_sec);
 
 #endif

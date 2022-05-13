@@ -34,7 +34,7 @@ int main()
     while (run_server)
     {
         fd_set readyset = all_clients; // work on copy
-        int nready = select_readable(maxfd + 1, &readyset);
+        int nready = select_readable(maxfd + 1, &readyset, 0);
 
         if (FD_ISSET(listen_sock, &readyset)) // connection detected?
         {

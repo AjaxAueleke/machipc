@@ -53,9 +53,19 @@ sock_t Accept(sock_t sock, sockaddr_in *clientaddr, socklen_t addr_size)
     return connfd;
 }
 
-int select_readable(int maxfdp1, fd_set *readset)
+int select_readable(int maxfdp1, fd_set *readset, time_t timeout_sec)
 {
-    int nready = select(maxfdp1, readset, NULL, NULL, NULL);
+    int nready;
+    struct timeval timeout;
+
+    if (timeout_sec == 0)
+        nready = select(maxfdp1, readset, NULL, NULL, NULL);
+    else
+    {
+        timeout.tv_sec = timeout_sec;    
+        nready = select(maxfdp1, readset, NULL, NULL, &timeout);
+    }
+    
     if (nready < 0)
     {
         perror("select_readable() failed");
