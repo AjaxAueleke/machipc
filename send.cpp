@@ -11,7 +11,7 @@ int main(int argc, char const *argv[])
         sleep(1);
 
     mach_msg msg;
-    msg.id = 69;
+    msg.id = 70;
     msg.size = sizeof(int);
 
     p.send(2, msg);

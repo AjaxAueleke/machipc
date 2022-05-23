@@ -1,7 +1,7 @@
 # Mach IPC in Linux
 
-This project aims to implement the Mach inter-process communication IPC
-mechanism within a traditional linux environment.
+This project aims to implement the Mach inter-process communication IPC 
+mechanism within a traditional Linux environment.
 
 ## Overview
 
@@ -17,45 +17,42 @@ storing and distributing information of running tasks.
 As messages are sent to the port, the messages are copied into a
 queue, which can be read by the receiver thread.
 
-
 ## Technology Used
 
 The UNIX networking and sockets APIs are used to implement the
 communication channels between processes.
 
+## How to Run Locally
 
-## Run Locally
-
-Download the project in your machine
+Download the project on your machine.
 
 ```bash
     git clone git@github.com:AjaxAueleke/machipc.git
     cd gitmachipc/
 ```
 
-Make a source folder for all object files
+Make a source folder for all object files.
 
 ```bash
-	mkdir src
+    mkdir src
 ```
 
-
-Start the central server 
+Start the central server.
 
 ```bash
     ./run.sh mach/mach_central_server
 ```
 
-Start the sending process
+Start the sending process.
 
 ```bash
-    ./run.sh process1_send
+    ./run.sh send
 ```
 
-Start the receiving process
+Start the receiving process.
 
 ```bash
-    ./run.sh process1_recv
+    ./run.sh recv
 ```
 
 To close the central server:
@@ -64,13 +61,18 @@ To close the central server:
     ./run.sh process_endserver
 ```
 
+For more information, [click here](./OS_Project_Report.pdf)
+
 ## Authors
-- email : ahmed.jamil7410@gmail.com
-- github : @ajaxaueleke(https://www.github.com/ajaxaueleke)
-- github : [@saad0510](https://www.github.com/saad0510)
+
+- email : ahmed.jamil7410@gmail.com or k200388@nu.edu.pk
+- github : [@ajaxaueleke](https://www.github.com/ajaxaueleke)
 - email : ayyansaad46@gmail.com or k200161@nu.edu.pk
+- github : [@saad0510](https://www.github.com/saad0510)
+- email : moaaz88sajjad@gmail.com or k200154@nu.edu.pk
+- github : [@nlzza](https://www.github.com/nlzza)
 
 ## Last updated
 
-_April, 2022
+24 May, 2022
 
