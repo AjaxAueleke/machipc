@@ -61,7 +61,7 @@ To close the central server:
     ./run.sh process_endserver
 ```
 
-For more information, [click here](./OS_Project_Report.pdf)
+For more information, [click here](https://github.com/AjaxAueleke/machipc/blob/main/OS%20Project%20Report.pdf)
 
 ## Authors
 
