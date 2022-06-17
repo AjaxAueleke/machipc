@@ -71,5 +71,5 @@ For more information, [click here](https://github.com/AjaxAueleke/machipc/blob/m
 
 ## Last updated
 
-24 May, 2022
+17 June, 2022
 
