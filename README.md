@@ -8,10 +8,7 @@ mechanism within a traditional Linux environment.
 The Mach IPC is a message-passing communication model. All inter-task
 communication is carried out by messages. Messages are sent to, and received
 from, mailboxes, which are called ports in Mach. A message is sent to one port,
-and a response is sent to a separate reply port. Message passing may occur
-between any two ports on the same host or on separate hosts on a distributed
-system. Associated with each port is a collection of port rights that identify the
-capabilities necessary for a task to interact with the port. Each task also has
+and a response is sent to a separate reply port. Each task also has
 access to a _central_ or _bootstrap_ server , which is responsible for
 storing and distributing information of running tasks.
 As messages are sent to the port, the messages are copied into a
