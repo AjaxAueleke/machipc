@@ -27,7 +27,7 @@ void mach_port_bind(mach_port *port, unsigned port_no = 0)
     getsockname(port->sock, (sockaddr *)&x, &x_size);
 
     port->port = ntohs(x.sin_port);
-    port->ip_addr = ntohs(x.sin_addr.s_addr);
+    port->ip_addr = ntohl(x.sin_addr.s_addr);
 }
 
 #endif
