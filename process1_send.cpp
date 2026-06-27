@@ -8,7 +8,8 @@ int main(int argc, char const *argv[])
 {
     char data[1024] = {0};
     printf( "Write Data : \n");
-    scanf("%[^\n]s",data);
+    if (scanf("%1023[^\n]", data) != 1)
+        data[0] = '\0';
     mach_process p(1);
 
     while (!p.connect(2))
