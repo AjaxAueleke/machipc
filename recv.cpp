@@ -10,8 +10,8 @@ int main(int argc, char const *argv[])
     while (!p.receive(&msg))
         ;
 
-    printf("rec %d\n", msg.id);
-    printf("rec %d\n", msg.size);
+    printf("rec %u\n", msg.id);
+    printf("rec %llu\n", (unsigned long long)msg.size);
 
     return 0;
 }
