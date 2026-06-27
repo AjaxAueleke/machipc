@@ -291,11 +291,13 @@ void *mach_receiving_thread(void *arg)
 
                 if (err == _MSG_CONNECTION_CLOSED)
                 {
+                    in_port_t closed_port = client->port;
                     close(client->sock);
                     FD_CLR(client->sock, &all_clients);
                     connected_clients.erase(client);
 
-                    fprintf(stderr, "connection closed by remote peer %d\n", client->port);
+                    fprintf(stderr, "connection closed by remote peer %d\n", closed_port);
+                    break;
                 }
                 else
                 {

@@ -71,10 +71,11 @@ int main()
 
                 if (err == _MSG_CONNECTION_CLOSED)
                 {
+                    in_port_t closed_port = client->port;
                     close(client->sock);
                     FD_CLR(client->sock, &all_clients);
                     connected_clients.erase(client);
-                    printf("disconnected client %d\n", client->port);
+                    printf("disconnected client %d\n", closed_port);
                     break;
                 }
 
