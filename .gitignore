@@ -57,3 +57,7 @@ dkms.conf
 .DS_Store
 .idea
 .atom
+
+# Build output
+/build/
+/src/
