@@ -62,7 +62,8 @@ int select_readable(int maxfdp1, fd_set *readset, time_t timeout_sec)
         nready = select(maxfdp1, readset, NULL, NULL, NULL);
     else
     {
-        timeout.tv_sec = timeout_sec;    
+        timeout.tv_sec = timeout_sec;
+        timeout.tv_usec = 0;
         nready = select(maxfdp1, readset, NULL, NULL, &timeout);
     }
     
