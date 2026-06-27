@@ -144,13 +144,13 @@ public:
 
     bool receive(mach_msg *msg_buffer)
     {
+        _ACQUIRE(lock);
         if (recv_queue.empty())
         {
-            msg_buffer = NULL;
+            _RELEASE(lock);
             return false;
         }
 
-        _ACQUIRE(lock);
         *msg_buffer = recv_queue.front();
         recv_queue.pop();
         _RELEASE(lock);
