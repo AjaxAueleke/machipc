@@ -121,23 +121,42 @@ through the server.
 
 ## Build
 
-Verified on **Ubuntu 24.04, g++ 13.3.0**. You only need a C++ compiler.
+Verified on **Ubuntu 24.04, g++ 13.3.0**. You only need a C++ compiler and `make`.
 
-### Using the `run.sh` helper
+### Using the Makefile (recommended)
 
-`run.sh` compiles the shared socket library into `src/`, links it with the
-requested target (with `-lpthread`), **runs** the resulting binary in the
-foreground, and removes it on exit. It is a *build-and-run* helper, not just a
-build step.
+`make` compiles the central server and every demo into `build/`:
 
 ```bash
 git clone git@github.com:AjaxAueleke/machipc.git
 cd machipc
-mkdir -p src              # run.sh places the library's object files here
-./run.sh <target>        # e.g. ./run.sh send
+make            # build all targets into build/
+make clean      # remove build/
 ```
 
-### Manual build (keeps the binaries)
+| Binary | Source | Role |
+|--------|--------|------|
+| `build/cserver`   | `mach/mach_central_server.cpp` | central / bootstrap server (TCP :3333) |
+| `build/send`      | `send.cpp`                     | minimal sender demo (key 1 → key 2) |
+| `build/recv`      | `recv.cpp`                     | minimal receiver demo (key 2) |
+| `build/endserver` | `process_endserver.cpp`        | sends the shutdown message to the server |
+| `build/shm_send`  | `process1_send.cpp`            | sender demo using System V shared memory |
+| `build/shm_recv`  | `process2_recv.cpp`            | receiver demo using System V shared memory |
+
+Everything compiles cleanly under `-Wall` with no warnings.
+
+### Using the `run.sh` quick-run helper
+
+`run.sh` is a *build-and-run* shortcut for a single target: it compiles the
+shared socket library into `src/` (creating the directory if needed), links the
+target with `-lpthread`, **runs** the binary in the foreground, and removes it on
+exit.
+
+```bash
+./run.sh <target>        # e.g. ./run.sh send  or  ./run.sh recv
+```
+
+### Manual build (without make)
 
 ```bash
 mkdir -p build
@@ -148,20 +167,17 @@ g++ recv.cpp              build/*.o -lpthread -o build/recv
 g++ process_endserver.cpp build/*.o -lpthread -o build/endserver
 ```
 
-Everything compiles cleanly (one harmless `printf` format warning in `recv.cpp`
-where a 128-bit `size` is printed with `%d`).
-
 ---
 
 ## Demo
 
-Open **three terminals** in the project root.
+Build everything first with `make`, then open **three terminals** in the project
+root.
 
 **Terminal 1 — start the central server:**
 
 ```bash
-mkdir -p src
-./run.sh mach/mach_central_server
+./build/cserver
 # listening at 3333 on localhost
 ```
 
@@ -169,14 +185,14 @@ mkdir -p src
 for a message):
 
 ```bash
-./run.sh recv
+./build/recv
 ```
 
 **Terminal 3 — start the sender** (registers as key `1`, looks up key `2`,
 connects, and sends one message):
 
 ```bash
-./run.sh send
+./build/send
 # connecting peer from <ephemeral-port>
 ```
 
@@ -196,7 +212,7 @@ peer …` line — that is the sender hanging up after delivery.)
 **To shut the central server down:**
 
 ```bash
-./run.sh process_endserver
+./build/endserver
 ```
 
 ### Shared-memory variant
@@ -232,7 +248,8 @@ requires a file named `shm` to exist in the working directory (`touch shm`).
 ├── process1_send.cpp            # demo: sender using System V shared memory
 ├── process2_recv.cpp            # demo: receiver using System V shared memory
 ├── process_endserver.cpp        # sends the shutdown control message to the server
-├── run.sh                       # build-and-run helper
+├── Makefile                     # builds every target into build/
+├── run.sh                       # single-target build-and-run helper
 └── OS Project Report.pdf        # original course project report
 ```
 
